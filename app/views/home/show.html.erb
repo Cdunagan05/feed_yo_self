@@ -1,2 +1,9 @@
-<h1>Home#show</h1>
-<p>Find me in app/views/home/show.html.erb</p>
+<h2 class="account-header">Compare your foods!</h2>
+
+<div class="form">
+  <%= form_tag("/compare", method: "get") do %>
+    <%= label_tag(:q, "Pick a Food: ") %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("How quickly will this kill me?") %>
+  <% end %>
+</div>
