@@ -2,26 +2,12 @@ require 'oauthenticator'
 
 class CompareController < ApplicationController
   def index
-    sig_options = {
-      :signature_method => 'HMAC-SHA1',
-      :consumer_key => "#{ENV['FAT_SECRET_API_KEY']}",
-      :consumer_secret => "#{ENV['FAT_SECRET_SHARED_SECRET']}",
-      # :oauth_timestamp => "#{DateTime.now}",
-      # :oauth_nonce => "#{SecureRandom.hex}",
-      # :oauth_version => "1.0",
-    }
+    # response = Faraday.get "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=#{ENV['NBD_API_KEY']}&nutrients=204&nutrients=208&ndbno=21251"
+    # parsed = JSON.parse(response.body)
+    # calories = parsed["report"]["foods"][0]["nutrients"][0]["value"]
 
-    connection = Faraday.new('http://platform.fatsecret.com/') do |faraday|
-      faraday.request :url_encoded
-      # faraday.params
-      faraday.request :oauthenticator_signer, sig_options
-      faraday.adapter Faraday.default_adapter
-    end
-
-    response = connection.get "rest/server.api?food_id=33791&method=food.get"
-    byebug
-    parsed = JSON.parse(response)
+    @calories = NdbService.calories
+    @sugars = NdbService.sugars
+    @fats = NdbService.fat
   end
 end
-
-# &oauth_signature_method=HMAC-SHA1&oauth_consumer_key=#{ENV['FAT_SECRET_API_KEY']}&oauth_nonce=#{SecureRandom.hex}&oauth_timestamp=#{DateTime.now}
