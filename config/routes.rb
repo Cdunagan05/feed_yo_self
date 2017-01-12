@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :home, only: [:show]
 
   root to: 'home#show'
+
+  get "/compare", to: "compare#index"
 end

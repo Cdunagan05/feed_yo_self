@@ -105,12 +105,17 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.7.0)
       mini_portile2 (~> 2.1.0)
+    oauth (0.5.1)
     oauth2 (1.2.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
+    oauthenticator (1.1.0)
+      faraday
+      json
+      rack
     omniauth (1.3.1)
       hashie (>= 1.2, < 4)
       rack (>= 1.0, < 3)
@@ -236,6 +241,8 @@ DEPENDENCIES
   jquery-rails
   launchy
   listen (~> 3.0.5)
+  oauth
+  oauthenticator
   omniauth-google-oauth2 (~> 0.2.1)
   pg (~> 0.18)
   puma (~> 3.0)

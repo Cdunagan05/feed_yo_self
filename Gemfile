@@ -23,6 +23,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'figaro'
 gem 'faraday'
 gem "omniauth-google-oauth2", "~> 0.2.1"
+gem "oauthenticator"
+gem "oauth"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
