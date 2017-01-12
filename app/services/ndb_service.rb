@@ -7,18 +7,24 @@ class NdbService
     end
   end
 
-  def self.calories
-    response = conn.get "/ndb/nutrients/?format=json&api_key=#{ENV['NBD_API_KEY']}&nutrients=208&ndbno=21251"
+  FOODS = {"Burger King Cheeseburger" => 21251,
+           "CHICK-FIL-A chicken sandwich" => 21526}
+
+  def self.calories(food)
+    food_id = FOODS[food]
+    response = conn.get "/ndb/nutrients/?format=json&api_key=#{ENV['NBD_API_KEY']}&nutrients=208&ndbno=#{food_id}"
     JSON.parse(response.body)["report"]["foods"][0]["nutrients"][0]["value"]
   end
 
-  def self.sugars
-    response = conn.get "/ndb/nutrients/?format=json&api_key=#{ENV['NBD_API_KEY']}&nutrients=269&ndbno=21251"
+  def self.sugars(food)
+    food_id = FOODS[food]
+    response = conn.get "/ndb/nutrients/?format=json&api_key=#{ENV['NBD_API_KEY']}&nutrients=269&ndbno=#{food_id}"
     JSON.parse(response.body)["report"]["foods"][0]["nutrients"][0]["value"]
   end
 
-  def self.fat
-    response = conn.get "/ndb/nutrients/?format=json&api_key=#{ENV['NBD_API_KEY']}&nutrients=204&ndbno=21251"
+  def self.fat(food)
+    food_id = FOODS[food]
+    response = conn.get "/ndb/nutrients/?format=json&api_key=#{ENV['NBD_API_KEY']}&nutrients=204&ndbno=#{food_id}"
     JSON.parse(response.body)["report"]["foods"][0]["nutrients"][0]["value"]
   end
 end
